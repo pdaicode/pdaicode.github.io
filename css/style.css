@@ -20,7 +20,7 @@ img
 
 h1, h2, h3, h4, h5, h6 
 { font: normal 175% arial, sans-serif;
-  color: #43423F;
+  color: rgb(0, 0, 0);
   letter-spacing: -1px;
   margin: 0 0 15px 0;
   padding: 15px 0 5px 0;}
@@ -59,7 +59,7 @@ a:hover
 ul
 { margin: 2px 0 22px 30px;
   line-height: 1.7em;
-  font-style: italic;
+  font-style: normal;
   font-size: 120%;}
 
 ol
@@ -123,7 +123,8 @@ ul#menu li a
   text-align: center;
   color: #000;
   text-decoration: none;
-  background: transparent;} 
+  background: transparent;
+  } 
 
 ul#menu li.selected
 { margin: 2px 0 0 1px;
@@ -189,7 +190,7 @@ ul#menu li a:hover
   padding: 0;}
 
 .sidebar li.selected, .sidebar li:hover
-{ color: #5D5D5D;
+{ color: #000;
   text-decoration: none;} 
 
 .sidebar_item
@@ -290,7 +291,7 @@ ul.links li a, ul.links li a:hover
   text-decoration: underline;} 
 
 ul.links li a:hover
-{ color: #5D5D5D;
+{ color: #rgb(0, 0, 0);
   text-decoration: none;} 
 
 /* styling for the slideshow on the homepage */
