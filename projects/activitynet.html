@@ -1,0 +1,157 @@
+<link rel="shortcut icon" href="./support/hw-icon.jpg"/>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0034)https://speednet-cvpr20.github.io/ -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>
+ActivityNet Challenge
+</title>
+<link href="./support/style.css" rel="stylesheet" type="text/css">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script type="text/javascript" async="" src="./SpeedNet_ Learning the Speediness in Videos_files/analytics.js.download"></script><script async="" src="./SpeedNet_ Learning the Speediness in Videos_files/js"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-163559140-1');
+</script>
+  
+</head>
+<body>
+<div class="container">
+  <p>&nbsp;</p>
+  
+  
+  
+  
+  
+  <p><span class="title">Class Semantics-based Attention for Action Detection</span></p>
+  
+  <table border="0" align="center" class="authors">
+    <tbody><tr align="center">
+	  <td><a href="https://scholar.google.ca/citations?user=3s6c6GcAAAAJ&hl=en">Deepak Sridhar</a></td>
+	  <td><a href="https://scholar.google.ca/citations?user=x-HGzWwAAAAJ&hl=en">Niamul Quader</a></td>
+	  <td><a href="https://scholar.google.ca/citations?user=ncqt5h8AAAAJ&hl=en">Srikanth Muralidharan</a></td>
+      <td><a href="">Yaoxin Li</a></td>
+      <td><a href="http://pdaicode.github.io/">Peng Dai</a></td>
+      <td><a href="https://scholar.google.com/citations?user=Asz24wcAAAAJ">Juwei Lu</a></td>
+    </tr>
+  </tbody></table>
+  
+  <table border="0" align="center" class="authors">
+  <tbody><tr align="center">
+  <td>Noah’s Ark Lab, Huawei Technologies Inc. Canada</td>
+  </tr>
+  </tbody></table>
+  
+  
+  <!--
+  <table border="0" align="center" class="affiliations">
+    <tbody><tr>
+      <td align="center"><a href="https://research.google.com/"><img src="./support/ChallengeLogo.svg" height="40" alt=""></a></td>
+	  <td align="center"><a href="https://research.google.com/"><img src="./support/cvpr20logo.jpg" height="40" alt=""></a></td>
+    </tr>
+  </tbody></table>
+  -->
+  
+  <br>
+  <br>
+  <table width="200" border="0" align="center">
+    <tbody><tr>
+      <td><img src="./support/activitynet2021.png" width="800" alt=""></td>
+    </tr>
+    
+  </tbody></table>
+  <br>
+  
+  
+  <p>
+  <table style="border:1px solid black;margin-left:auto;margin-right:auto;">
+  
+                <thead>
+                <tr>
+                  <th style="width: 30%" scope="col">Rank</th>
+                  <th style="width: 50%" scope="col">Team</th>
+                  <th style="width: 20%" scope="col">AmAP Score</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td style="text-align:center">Runner Up</td>
+                  <td style="text-align:center">HUAWEI-Canada </td>
+                  <td style="text-align:center"><b>44.11%</b></td>
+                </tr>
+                </tbody>
+              </table>
+	
+	</p>
+	
+  <p><span class="section">Abstract</span></p>
+  <p>
+  Action localization networks are often structured as a feature encoder sub-network and a localization subnetwork, where the feature encoder learns to transform
+an input video to features that are useful for the localization sub-network to generate reliable action proposals. While some of the encoded features may be more useful
+for generating action proposals, prior action localization approaches do not include any attention mechanism that enables the localization sub-network to attend more to the more important features. In this paper, we propose a novel
+attention mechanism, the Class Semantics-based Attention (CSA), that learns from the temporal distribution of semantics of action classes present in an input video to find the importance scores of the encoded features, which are used to provide attention to the more useful encoded features. 
+We demonstrate on two popular action detection datasets that incorporating our novel attention mechanism provides considerable performance gains on competitive
+action detection models (e.g., around 6.2% improvement over BMN action detection baseline to obtain 47.5% mAP on the THUMOS-14 dataset), and a new state-of-the-art of
+36.25% mAP on the ActivityNet v1.3 dataset. Further, the CSA localization model family which includes BMN-CSA, was part of the second-placed submission at the 2021 ActivityNet action localization challenge. 
+Our attention mechanism outperforms prior self-attention modules such as the squeeze-and-excitation in action detection task. We also observe that our attention mechanism is complementary to
+such self-attention modules in that performance improvements are seen when both are used together
+  <br>
+  </p>
+  <p class="section">&nbsp;</p>
+  
+  <table width="200" border="0" align="center">
+      <tbody>
+        <tr>
+          <td><iframe aligh="center" width="853" height="480" src="https://www.youtube.com/embed/FXbf7nb-S0w" frameborder="0" allowfullscreen=""></iframe></td>
+        </tr>
+      </tbody>
+    </table>
+  
+  
+	<p class="section">&nbsp;</p>
+
+  <p class="section">System Diagram</p>
+	
+	<table width="200" border="0" align="center">
+    <tbody><tr>
+      <td><img src="./support/csa_arch.png" width="1000" alt=""></td>
+    </tr>
+    <tr>
+      <td class="caption"><p>The architecture of a generic action detection network with incorporation of our CSA attention mechanism. The
+generic action detection architecture consists of three major components: (1) an action recognition-based feature encoder that
+extracts class semantics rich features R, (2) a localization encoder sub-network that encodes R to F, and (3) a localization
+sub-network that processes F for generating action proposals. Our attention mechanism learns attention weights from R and
+applies attention on F both along the channel and the temporal axis, and then fuses the two attention-applied outputs. </p></td>
+    </tr>
+  </tbody></table>
+<p class="section">&nbsp;</p>
+
+  <p class="section">Paper</p>
+  <table width="940" border="0">
+    <tbody>
+      <tr>
+        <td width="175" height="202"><a href="https://arxiv.org/pdf/2004.06130.pdf"><img src="./support/csa_cover.png" alt="" width="175" height="211"></a></td>
+        <td width="5">&nbsp;</td>
+        <td width="645"><p>"Class Semantics-based Attention for Action Detection",<br>
+            Deepak Sridhar, Niamul Quader, Srikanth Muralidharan, Yaoxin Li, Peng Dai, Juwei Lu<br>
+        </p>
+			<p> 
+          </strong>ICCV 2021<strong>          </strong></em><br>
+          </p>
+        <p>[<a href="https://arxiv.org/abs/2109.02613">Arxiv</a>] [<a href="https://openaccess.thecvf.com/content/ICCV2021/papers/Sridhar_Class_Semantics-Based_Attention_for_Action_Detection_ICCV_2021_paper.pdf">ICCV</a>]</p></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <br>
+  
+  <p class="section">&nbsp;</p>
+  <p align="center" class="date">Last updated: April 2022</p>
+</div>
+
+
+</body></html>
