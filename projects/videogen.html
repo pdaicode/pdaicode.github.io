@@ -1,0 +1,104 @@
+<link rel="shortcut icon" href="./support/hw-icon.jpg"/>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0034)https://speednet-cvpr20.github.io/ -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>
+Decompose the Sounds and Pixels, Recompose the Events
+</title>
+<link href="./support/style.css" rel="stylesheet" type="text/css">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script type="text/javascript" async="" src="./SpeedNet_ Learning the Speediness in Videos_files/analytics.js.download"></script><script async="" src="./SpeedNet_ Learning the Speediness in Videos_files/js"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-163559140-1');
+</script>
+  
+</head>
+<body>
+<div class="container">
+  <p>&nbsp;</p>
+  <p><span class="title">Decompose the Sounds and Pixels, Recompose the Events</span></p>
+  <br>
+  <table border="0" align="center" class="authors">
+    <tbody><tr align="center">
+	  <td><a href="https://scholar.google.com.sg/citations?user=JkDZyZoAAAAJ">Varshanth Rao</a></td>
+	  <td><a href="">Md Ibrahim Khalil</a></td>
+      <td><a href="">Haoda Li</a></td>
+      <td><a href="http://pdaicode.github.io/">Peng Dai*</a></td>
+      <td><a href="https://scholar.google.com/citations?user=Asz24wcAAAAJ">Juwei Lu</a></td>
+    </tr>
+  </tbody></table>
+  
+  <table border="0" align="center" class="authors">
+  <tbody><tr align="center">
+  <td>Noah’s Ark Lab, Huawei Technologies Inc. Canada</td>
+  </tr>
+  </tbody></table>
+  
+  <table border="0" align="center" class="authors">
+  <tbody><tr align="center">
+  <td>*: corresponding author</td>
+  </tr>
+  </tbody></table>
+  
+  
+  <br>
+  <br>
+  <table width="200" border="0" align="center">
+    <tbody><tr>
+      <td><img src="./support/edrnet_arch2.png" width="1000" alt=""></td>
+    </tr>
+    <tr>
+      <td class="caption"><p>Overview of the EDRNet. Modality-wise localization features are forged and refined in two phases: the EDP and the ERP. 
+	  The EDP summarizes the video into an event composition which the ERP leverages to effectively localize events in increasing temporal granularity. 
+	  Consensus of the modalities is learned by a gating mechanism to yield the final audio-visual event localization predictions. </p></td>
+    </tr>
+  </tbody></table>
+  <br>
+  <p><span class="section">Abstract</span></p>
+  <p>
+  In this paper, we propose a framework centering around a novel architecture called the Event Decomposition Recomposition Network (EDRNet) to tackle the Audio-Visual Event (AVE) 
+  localization problem in the supervised and weakly supervised settings. AVEs in the real world exhibit common unravelling patterns, termed as Event Progress Checkpoints (EPC), 
+  which humans can perceive through the cooperation of their auditory and visual senses. Unlike earlier methods which attempt to recognize entire event sequences, the EDR-Net models EPCs and inter-EPC relationships using stacked temporal convolutions. 
+  Based on the postulation that EPC representations are theoretically consistent for an event category, we introduce the State Machine Based Video Fusion, a novel augmentation technique that blends source videos using different EPC template sequences. 
+  Additionally, we design a new loss function called the Land-Shore-Sea loss to compactify continuous foreground and background representations. Lastly, to alleviate the issue of confusing events during weak supervision, 
+  we propose a prediction stabilization method called Bag to Instance Label Correction. Experiments on the AVE dataset show that our collective framework outperforms the state-of-the-art by a sizable margin.
+  <br>
+  </p>
+  <p class="section">&nbsp;</p>
+  
+  <p><span class="section">Media coverage</span></p>
+  <p>Our work is featured in <a href="https://mp.weixin.qq.com/s/u1z9C6wwgNJRnGba_0njrw" target="_blank">Noah's Ark official blog</a>!</p>
+	
+<p class="section">&nbsp;</p>
+
+  <p class="section">Paper</p>
+  <table width="940" border="0">
+    <tbody>
+      <tr>
+        <td width="175" height="202"><a href="https://arxiv.org/pdf/2004.06130.pdf"><img src="./support/edrnet_cover.png" alt="" width="175" height="211"></a></td>
+        <td width="5">&nbsp;</td>
+        <td width="645"><p>"Decompose the Sounds and Pixels, Recompose the Events",<br>
+            Varshanth R Rao, Md Ibrahim Khalil, Haoda Li, Peng Dai, Juwei Lu<br>
+        </p>
+			<p> <em><strong>Oral presentation<br>
+          </strong>AAAI 2022<strong>          </strong></em><br>
+          </p>
+        <p>[<a href="https://arxiv.org/abs/2112.11547">Arxiv</a>] [<a href="https://www.aaai.org/AAAI22Papers/AAAI-10299.RaoV.pdf">AAAI</a>]</p></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <br>
+  
+  <p class="section">&nbsp;</p>
+  <p align="center" class="date">Last updated: April 2022</p>
+</div>
+
+
+</body></html>

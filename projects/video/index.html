@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seedance 2.0 Prompts - PromptLib</title>
+  <link rel="shortcut icon" href="../support/hw-icon.jpg"/>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: system-ui, sans-serif; background: #0a0a0f; color: #fff; min-height: 100vh; }
+    .header { border-bottom: 1px solid rgba(255,255,255,0.1); background: rgba(10,10,15,0.9); position: sticky; top: 0; z-index: 20; backdrop-filter: blur(8px); }
+    .header-inner { max-width: 72rem; margin: 0 auto; padding: 1rem; display: flex; align-items: center; justify-content: space-between; }
+    .hero { max-width: 72rem; margin: 0 auto; padding: 2.5rem 1rem; text-align: center; }
+    .hero-badge { display: inline-block; font-size: 0.75rem; padding: 0.25rem 0.75rem; border-radius: 9999px; background: rgba(99,102,241,0.2); color: #a5b4fc; margin-bottom: 1rem; font-weight: 500; }
+    .hero h1 { font-size: 2.25rem; font-weight: 900; letter-spacing: -0.025em; margin-bottom: 0.75rem; background: linear-gradient(to right,#fff,rgba(255,255,255,0.5)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero p { color: rgba(255,255,255,0.5); font-size: 0.875rem; max-width: 32rem; margin: 0 auto; line-height: 1.6; }
+    .filters { max-width: 72rem; margin: 0 auto; padding: 0 1rem 2rem; display: flex; flex-direction: column; gap: 1rem; }
+    .search-wrap { position: relative; }
+    .search-wrap input { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 0.75rem; padding: 0.75rem 1rem 0.75rem 2.5rem; font-size: 0.875rem; color: #fff; outline: none; }
+    .search-wrap input::placeholder { color: rgba(255,255,255,0.3); }
+    .search-wrap input:focus { border-color: rgba(255,255,255,0.25); }
+    .search-icon { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: rgba(255,255,255,0.3); font-size: 0.875rem; }
+    .cat-row { display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; }
+    .cat-btn { font-size: 0.75rem; padding: 0.375rem 1rem; border-radius: 9999px; font-weight: 500; cursor: pointer; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.5); transition: all 0.2s; }
+    .cat-btn:hover { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.8); }
+    .cat-btn.active { background: #4f46e5; color: #fff; border-color: #4f46e5; }
+    .grid { max-width: 72rem; margin: 0 auto; padding: 0 1rem 2rem; display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+    @media (min-width: 640px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+    .card { border-radius: 1rem; border: 1px solid rgba(255,255,255,0.1); overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); transition: transform 0.2s; }
+    .card:hover { transform: scale(1.015); }
+    .card-video-wrap { position: relative; width: 100%; aspect-ratio: 16/9; background: #111; cursor: pointer; }
+    .card-video-wrap video { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .card-play-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: linear-gradient(to top,rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.1) 60%,transparent 100%); transition: opacity 0.2s; }
+    .card-play-overlay.hidden { opacity: 0; }
+    .card-play-btn { width: 3rem; height: 3rem; border-radius: 50%; background: rgba(255,255,255,0.2); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.3); }
+    .card-badge { position: absolute; top: 0.5rem; left: 0.5rem; font-size: 0.75rem; padding: 0.125rem 0.5rem; border-radius: 9999px; font-weight: 600; backdrop-filter: blur(4px); }
+    .card-expand { position: absolute; top: 0.5rem; right: 0.5rem; opacity: 0; transition: opacity 0.2s; }
+    .card-video-wrap:hover .card-expand { opacity: 1; }
+    .card-expand-inner { width: 1.75rem; height: 1.75rem; border-radius: 50%; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; color: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.2); }
+    .card-content { padding: 1rem; display: flex; flex-direction: column; gap: 0.625rem; flex: 1; }
+    .card-title-row { display: flex; align-items: center; gap: 0.5rem; }
+    .card-title { font-weight: 600; color: #fff; font-size: 0.875rem; }
+    .card-prompt { color: rgba(255,255,255,0.6); font-size: 0.75rem; line-height: 1.6; }
+    .card-tags { display: flex; flex-wrap: wrap; gap: 0.25rem; }
+    .card-tag { font-size: 10px; padding: 0.125rem 0.5rem; border-radius: 9999px; background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.4); }
+    .card-actions { display: flex; gap: 0.5rem; margin-top: auto; padding-top: 0.25rem; }
+    .card-actions button { flex: 1; font-size: 0.75rem; font-weight: 500; padding: 0.375rem 0.75rem; border-radius: 0.5rem; cursor: pointer; transition: all 0.2s; }
+    .card-btn-copy { background: transparent; border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7); }
+    .card-btn-copy:hover { background: rgba(255,255,255,0.1); }
+    .modal-backdrop { position: fixed; inset: 0; z-index: 50; display: flex; align-items: center; justify-content: center; padding: 1rem; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); }
+    .modal-inner { position: relative; width: 100%; max-width: 48rem; border-radius: 1rem; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.1); }
+    .modal-inner video { width: 100%; display: block; max-height: 70vh; object-fit: contain; background: #000; }
+    .modal-footer { padding: 1rem; background: #111; display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+    .modal-close { color: rgba(255,255,255,0.4); background: none; border: none; font-size: 1.25rem; cursor: pointer; flex-shrink: 0; }
+    .modal-close:hover { color: #fff; }
+    .empty-state { text-align: center; padding: 5rem 1rem; color: rgba(255,255,255,0.3); }
+    .footer { border-top: 1px solid rgba(255,255,255,0.1); padding: 1.5rem; text-align: center; font-size: 0.75rem; color: rgba(255,255,255,0.2); }
+    .more-btn { margin-left: 0.25rem; color: rgba(255,255,255,0.35); background: none; border: none; text-decoration: underline; cursor: pointer; font-size: inherit; }
+    .more-btn:hover { color: rgba(255,255,255,0.6); }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="header-inner">
+      <div style="display:flex;align-items:center;gap:0.5rem;">
+        <span style="font-size:1.25rem;">🎬</span>
+        <span style="font-weight:700;font-size:1.125rem;">PromptLib</span>
+        <span style="font-size:0.75rem;padding:0.125rem 0.5rem;border-radius:9999px;background:rgba(139,92,246,0.2);color:#c4b5fd;font-weight:500;margin-left:0.25rem;">Seedance 2.0</span>
+      </div>
+      <div id="count" class="text-xs" style="font-size:0.75rem;color:rgba(255,255,255,0.4);">15 prompts · Video previews · Free</div>
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-badge">✦ High-Signal AI Video Prompt Library</div>
+    <h1>Seedance 2.0 Prompts</h1>
+    <p>Curated prompts with live video previews — hover to play, click to fullscreen. Copy and use instantly.</p>
+  </div>
+
+  <div class="filters">
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="search" placeholder="Search prompts, styles, categories...">
+    </div>
+    <div class="cat-row">
+      <button class="cat-btn active" data-cat="All">All</button>
+      <button class="cat-btn" data-cat="Cinematic">Cinematic</button>
+      <button class="cat-btn" data-cat="Action">Action</button>
+      <button class="cat-btn" data-cat="Anime">Anime</button>
+      <button class="cat-btn" data-cat="Product">Product</button>
+      <button class="cat-btn" data-cat="UGC">UGC</button>
+      <button class="cat-btn" data-cat="Social">Social</button>
+      <button class="cat-btn" data-cat="Animation">Animation</button>
+      <div id="results" style="margin-left:auto;font-size:0.75rem;color:rgba(255,255,255,0.3);">15 results</div>
+    </div>
+  </div>
+
+  <div id="grid" class="grid"></div>
+
+  <div class="footer">Hover cards to preview · Click to fullscreen · Free to use</div>
+
+  <script>
+    const PROMPTS = [
+      { id: 13, category: "Cinematic", title: "Earth Goddess Reshapes the World", tags: ["chinese mythology","fantasy","epic"], prompt: "【核心概念】东方玄幻史诗•法相天地，以电影级视听语言，融合新中式上古神话神韵与高概念奇幻美术，打造兼具厚重神性与悲悯温度的东方玄幻奇观， 以「地裂天崩后的山河重塑」为核心，漢绎后去法天象地的地母神威。 \n【运镜与构图】1-25微距镜头定格損尖，金色地脉滲人焦去，裂隙绽出金晶； -4s 镜头丝滑上移，掠过配饰定格悲悯面容：4-6s慢拉镜头，女子结印浮现山 河虚影；6-10s极速拉至天地全景，法相显化完成，本尊与法相回屏史诗收尾。 \n【主体细节】上古后去鼻地祇，看素只奢金神袍，衣摆绣山河舆图，赤足踏系 脚踝缠金纹。双手结地母印，指尖凝山川虚影，声如大地脉动，庄严温润 \n【环境与氛围】背景为崩碎大地，山峦断裂、河床干涸、大地魚裂，案中飘碎 石与金烬；九道金光柱对应九鼎，地脉光带交织，氛围肃穆又饱含希望。 \n【光影与色调】主调深灰、焦褐、墨黑，暗调凸显破碎感：女子与法相为鎏金 尊手印重合，共赐大地重生之力。", videoUrl: "https://www.youtube.com/shorts/jIsLJpBiucM", gradient: "linear-gradient(to bottom right,#1c1917,#3b2000)", accent: "#d97706", icon: "🏔️" },
+      { id: 14, category: "Action", title: "Black Mist Warrior Reforging", tags: ["chinese fantasy","action","combat"], prompt: "0-3秒|FPV高速俯冲+环绕运镜，黑雾战场骨刺突袭，墨龙甩尾破敌，持断剑御敌，黑雾缠臂护体。细节：黑雾挡刺、剑劈骨刺、墨龙吐黑雾。 4-7秒|特写+360°环绕运镜，念台词，狂暴黑雾裹身塑形，鎏金符文炸裂，断剑重铸黑金长剑，战甲实体化。细节：黑雾塑甲、朱砂引黑雾、长剑鎏金点亮。 8-12秒|高速跟拍运镜，控黑雾化龙爪清敌，墨龙金纹与黑雾共鸣。细节：龙爪碎敌、战甲黑雾吞吐、龙鳞黑雾交织。 13-15秒|高空俯拍迫踪坠落，落地单膝跪地，石板崩裂，黑金气浪席卷，抬眼直视镜头。细节：护膝砸石、气浪卷黑雾、冷冽眼神映金光。", videoUrl: "https://www.youtube.com/shorts/NLxauKJw6-8", gradient: "linear-gradient(to bottom right,#0a0a0a,#1a1200)", accent: "#ca8a04", icon: "🐉" },
+      { id: 15, category: "Action", title: "Xianxia Spell Duel in Ancient Ruins", tags: ["xianxia","CG animation","combat"], prompt: "中国风修仙主题，CG动画风格，3D渲染，极度夸张的大透视构图视角，展现一场发生在古遗迹中的炫酷炸裂的修仙法术对决。采用专业影视制作级动作场面，景别切换流畅，符合CG动画分镜叙事逻辑，两人战斗全程攻防交错，招式衔接流畅，融入多维度修仙术法对决。超高速激烈战斗，镜头震动加强打击感，强烈气流冲击波，高速动作产生的超高速动态模糊，两人的每一次碰撞都伴随着镜头的震动，超高速的电影镜头摇摄和移动。", videoUrl: "https://www.youtube.com/shorts/LPo47FhePNg", gradient: "linear-gradient(to bottom right,#1e1b4b,#2e1065)", accent: "#7c3aed", icon: "✨" },
+      { id: 1, category: "Product", title: "Headphone Campaign", tags: ["product","commercial","luxury"], prompt: "Premium headphone campaign video, 15 seconds, shot on digital, ultra clean sharp image, minimal modern aesthetic. Glossy black over-ear headphones floating center frame, slowly rotating, every surface catching light. Calm confident voiceover: 'we didn't design headphones.' Smooth slow-motion orbital shot. Brand: AURA. 4K, cinematic.", videoUrl: "https://storage.googleapis.com/fc-mkt-common-pro-rev1-eu-wp-media-bucket/sites/1/2026/02/product-seedance-2-0.mp4", gradient: "linear-gradient(to bottom right,#171717,#262626)", accent: "#6366f1", icon: "🎧" },
+      { id: 2, category: "Anime", title: "Anime Comedy Opening", tags: ["anime","2D","comedy"], prompt: "15-second hand-drawn 2D cel animation opening. Protagonist: young man with spiky black hair, dark face paint, all-black coat — cool look but constantly in silly situations. Sequence: dramatic close-up in moody green/purple lighting, bird lands on his head. Cut to title 'KOROKORO'. Comedy montage: stepping on banana peel, stray cats piling on lap, getting ramen broth splashed on coat.", videoUrl: "https://storage.googleapis.com/fc-mkt-common-pro-rev1-eu-wp-media-bucket/sites/1/2026/02/anime-prompt-seedance-2-0.mp4", gradient: "linear-gradient(to bottom right,#1e1b4b,#083344)", accent: "#06b6d4", icon: "🎌" },
+      { id: 3, category: "Cinematic", title: "Mixed Media Fashion Film", tags: ["fashion","editorial","mixed media"], prompt: "15-second mixed media fashion film combining real footage with animated graphic elements. Models in eclectic vintage fashion filmed at laundromat (lavender grade), parking lot (orange), diner (mint green). Animated overlays react to models: bold geometric shapes in coral, violet, lemon yellow. Hand-drawn illustrations animate in real time. Fast-paced rhythmic editing.", videoUrl: "https://storage.googleapis.com/fc-mkt-common-pro-rev1-eu-wp-media-bucket/sites/1/2026/02/fashion-video-seedance-2-0.mp4", gradient: "linear-gradient(to bottom right,#4c0519,#881337)", accent: "#f43f5e", icon: "👗" },
+      { id: 4, category: "Product", title: "Tennis Product Ad", tags: ["sport","product","dynamic"], prompt: "Dynamic tennis product advertisement, 15 seconds. Slow-motion tennis ball impact, racket strings distorting on contact. Player serving against a golden hour backdrop. Product close-ups: shoe grip on clay, racket frame catching light. Fast editorial cuts synchronized to a pulse-beat soundtrack. 4K, commercial grade, vibrant color grading.", videoUrl: "https://storage.googleapis.com/fc-mkt-common-pro-rev1-eu-wp-media-bucket/sites/1/2026/02/sport-tenis-seedance-2-0.mp4", gradient: "linear-gradient(to bottom right,#422006,#78350f)", accent: "#f59e0b", icon: "🎾" },
+      { id: 5, category: "Action", title: "Ronin vs Winged Beast", tags: ["epic","fantasy","action"], prompt: "A masked ronin on floating rock islands during a thunderstorm battles a colossal winged beast. Camera starts wide, slow dolly in as lightning strikes. The ronin leaps, sword trailing azure energy, and slashes through the creature's wing. Final frame: creature falls into storm clouds below. 4K, cinematic, 16:9, 15s.", videoUrl: "https://videos.pexels.com/video-files/2491284/2491284-uhd_2560_1440_24fps.mp4", gradient: "linear-gradient(to bottom right,#0f172a,#172554)", accent: "#3b82f6", icon: "⚔️" },
+      { id: 6, category: "Action", title: "Car Transforms into Optimus Prime", tags: ["CGI","action","sci-fi"], prompt: "A luxury car speeds down a rain-soaked Tokyo street at night. Mid-drive, it begins to transform into Optimus Prime. Godzilla appears from behind skyscrapers. Epic battle ensues with energy blasts and explosions. Cinematic, neon-lit, 4K, 15s.", videoUrl: "https://videos.pexels.com/video-files/3015488/3015488-uhd_2560_1440_25fps.mp4", gradient: "linear-gradient(to bottom right,#18181b,#450a0a)", accent: "#ef4444", icon: "🤖" },
+      { id: 7, category: "Anime", title: "Water vs Thunder Breathing Duel", tags: ["anime","wuxia","FX"], prompt: "Live-action Hollywood adaptation: 'Water Breathing' (blue water dragon aura) vs 'Thunder Breathing' (golden lightning). Misty forest, moonlight. Shot 1: hands glowing blue. Shot 2: lightning strike from above. Shot 3: both clash mid-air in a shockwave. Dark samurai aesthetic, 4K, fast cuts, 15s.", videoUrl: "https://videos.pexels.com/video-files/4911704/4911704-uhd_2560_1440_25fps.mp4", gradient: "linear-gradient(to bottom right,#2e1065,#172554)", accent: "#8b5cf6", icon: "🌊" },
+      { id: 8, category: "Animation", title: "Van Gogh Living World", tags: ["animation","art","Van Gogh"], prompt: "A completely dynamic world made of thick Van Gogh oil paint. Sky: deep blue night with huge yellow celestial bodies, crescent moon with radiating brushstrokes, nebulae swirling like rivers. Ground: wheatfields rippling in painted wind. Heavy impasto texture, high saturation blue-yellow contrast. 15s animation.", videoUrl: "https://videos.pexels.com/video-files/3214294/3214294-uhd_2560_1440_25fps.mp4", gradient: "linear-gradient(to bottom right,#422006,#172554)", accent: "#eab308", icon: "🎨" },
+      { id: 9, category: "Cinematic", title: "Cyberpunk Hacker Night Market", tags: ["cyberpunk","noir","cinematic"], prompt: "0–4s: Hacker in damaged trench coat walks down rainy neon night street. Pink/blue neon reflections on wet pavement. 4–10s: Close on face, drone hum grows louder. 10–15s: Hacker ducks into alley, drone light sweeps past. Anamorphic lens flare, film grain, stable exposure. Cinematic, 4K.", videoUrl: "https://videos.pexels.com/video-files/3129671/3129671-uhd_2560_1440_30fps.mp4", gradient: "linear-gradient(to bottom right,#2e1065,#4a044e)", accent: "#a855f7", icon: "🌆" }
+    ];
+
+    let activeCategory = "All";
+    let search = "";
+    let copiedId = null;
+
+    function filterPrompts() {
+      let res = PROMPTS;
+      if (activeCategory !== "All") res = res.filter(p => p.category === activeCategory);
+      if (search.trim()) {
+        const q = search.toLowerCase();
+        res = res.filter(p =>
+          p.title.toLowerCase().includes(q) ||
+          p.prompt.toLowerCase().includes(q) ||
+          p.tags.some(t => t.includes(q)) ||
+          p.category.toLowerCase().includes(q)
+        );
+      }
+      return res;
+    }
+
+    function render() {
+      const filtered = filterPrompts();
+      document.getElementById("results").textContent = filtered.length + " results";
+
+      const grid = document.getElementById("grid");
+      if (filtered.length === 0) {
+        grid.innerHTML = '<div class="empty-state"><div style="font-size:2.25rem;margin-bottom:0.75rem;">🔭</div><div>No prompts found for "' + search + '"</div></div>';
+        return;
+      }
+
+      grid.innerHTML = filtered.map(p => {
+        const truncated = p.prompt.length > 110;
+        const shortPrompt = truncated ? p.prompt.slice(0, 110) + "…" : p.prompt;
+        const ytId = getYoutubeId(p.videoUrl);
+        const mediaSrc = ytId
+          ? '<img src="https://img.youtube.com/vi/' + ytId + '/maxresdefault.jpg" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy">'
+          : '<video src="' + p.videoUrl + '" muted loop playsinline preload="metadata"></video>';
+        return '<div class="card" style="background:' + p.gradient + '">' +
+          '<div class="card-video-wrap" data-id="' + p.id + '"' + (ytId ? ' data-ytid="' + ytId + '"' : '') + '>' +
+            mediaSrc +
+            '<div class="card-play-overlay"><div class="card-play-btn"><span style="font-size:20px;padding-left:3px">▶</span></div></div>' +
+            '<span class="card-badge" style="background:' + p.accent + '44;color:' + p.accent + ';border:1px solid ' + p.accent + '44">' + p.category + '</span>' +
+            '<div class="card-expand"><div class="card-expand-inner">⤢</div></div>' +
+          '</div>' +
+          '<div class="card-content">' +
+            '<div class="card-title-row"><span style="font-size:1.125rem">' + p.icon + '</span><span class="card-title">' + p.title + '</span></div>' +
+            '<p class="card-prompt">' + shortPrompt +
+              (truncated ? ' <button class="more-btn" data-id="' + p.id + '" data-expanded="0">more</button>' : '') +
+            '</p>' +
+            '<div class="card-tags">' + p.tags.map(t => '<span class="card-tag">#' + t + '</span>').join('') + '</div>' +
+            '<div class="card-actions">' +
+              '<button class="card-btn-copy" data-prompt="' + escapeHtml(p.prompt) + '" data-id="' + p.id + '">' + (copiedId === p.id ? '✓ Copied!' : 'Copy Prompt') + '</button>' +
+              '<button style="background:' + p.accent + 'cc;color:#fff" onclick="window.open(\'https://jimeng.jianying.com\',\'_blank\')">Try it →</button>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+      }).join('');
+
+      // Attach event listeners
+      grid.querySelectorAll('.card-video-wrap').forEach(wrap => {
+        const ytId = wrap.dataset.ytid;
+        const overlay = wrap.querySelector('.card-play-overlay');
+        if (ytId) {
+          wrap.style.cursor = 'pointer';
+          wrap.addEventListener('click', () => {
+            const p = PROMPTS.find(x => x.id === parseInt(wrap.dataset.id));
+            if (!p) return;
+            const modal = document.createElement('div');
+            modal.className = 'modal-backdrop';
+            modal.innerHTML = '<div class="modal-inner" onclick="event.stopPropagation()">' +
+              '<div style="position:relative;padding-bottom:56.25%;background:#000"><iframe src="https://www.youtube.com/embed/' + ytId + '?autoplay=1" style="position:absolute;inset:0;width:100%;height:100%;border:none" allow="autoplay;encrypted-media" allowfullscreen></iframe></div>' +
+              '<div class="modal-footer">' +
+                '<div><div style="font-weight:600;color:#fff;font-size:0.875rem;margin-bottom:0.25rem">' + p.icon + ' ' + escapeHtml(p.title) + '</div><p style="color:rgba(255,255,255,0.5);font-size:0.75rem;line-height:1.6">' + escapeHtml(p.prompt) + '</p></div>' +
+                '<button class="modal-close">✕</button>' +
+              '</div></div>';
+            modal.onclick = () => { modal.remove(); };
+            modal.querySelector('.modal-close').onclick = () => modal.remove();
+            document.body.appendChild(modal);
+          });
+        } else {
+          const video = wrap.querySelector('video');
+          wrap.addEventListener('mouseenter', () => { video.play().catch(() => {}); overlay.classList.add('hidden'); });
+          wrap.addEventListener('mouseleave', () => { video.pause(); video.currentTime = 0; overlay.classList.remove('hidden'); });
+          wrap.addEventListener('click', () => {
+            const p = PROMPTS.find(x => x.id === parseInt(wrap.dataset.id));
+            if (!p) return;
+            const modal = document.createElement('div');
+            modal.className = 'modal-backdrop';
+            modal.innerHTML = '<div class="modal-inner" onclick="event.stopPropagation()">' +
+              '<video src="' + p.videoUrl + '" controls autoplay muted loop playsinline></video>' +
+              '<div class="modal-footer">' +
+                '<div><div style="font-weight:600;color:#fff;font-size:0.875rem;margin-bottom:0.25rem">' + p.icon + ' ' + escapeHtml(p.title) + '</div><p style="color:rgba(255,255,255,0.5);font-size:0.75rem;line-height:1.6">' + escapeHtml(p.prompt) + '</p></div>' +
+                '<button class="modal-close">✕</button>' +
+              '</div></div>';
+            modal.onclick = () => { modal.remove(); };
+            modal.querySelector('.modal-close').onclick = () => modal.remove();
+            document.body.appendChild(modal);
+          });
+        }
+      });
+
+      grid.querySelectorAll('.more-btn').forEach(btn => {
+        btn.onclick = () => {
+          const id = parseInt(btn.dataset.id);
+          const p = PROMPTS.find(x => x.id === id);
+          const expanded = btn.dataset.expanded === '1';
+          btn.dataset.expanded = expanded ? '0' : '1';
+          btn.previousSibling.textContent = expanded ? p.prompt.slice(0, 110) + "…" : p.prompt;
+          btn.textContent = expanded ? 'more' : 'less';
+        };
+      });
+
+      grid.querySelectorAll('.card-btn-copy').forEach(btn => {
+        btn.onclick = () => {
+          const text = btn.dataset.prompt;
+          navigator.clipboard.writeText(text).catch(() => {});
+          copiedId = parseInt(btn.dataset.id);
+          btn.textContent = '✓ Copied!';
+          setTimeout(() => { copiedId = null; render(); }, 2000);
+        };
+      });
+    }
+
+    function getYoutubeId(url) {
+      const m = url.match(/(?:youtube\.com\/(?:shorts\/|watch\?v=)|youtu\.be\/)([^?&]+)/);
+      return m ? m[1] : null;
+    }
+
+    function escapeHtml(s) {
+      const div = document.createElement('div');
+      div.textContent = s;
+      return div.innerHTML.replace(/"/g, '&quot;');
+    }
+
+    document.getElementById('search').addEventListener('input', e => { search = e.target.value; render(); });
+    document.querySelectorAll('.cat-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeCategory = btn.dataset.cat;
+        render();
+      });
+    });
+
+    render();
+  </script>
+</body>
+</html>
