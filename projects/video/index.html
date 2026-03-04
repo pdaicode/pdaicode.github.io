@@ -9,12 +9,12 @@
     * { box-sizing: border-box; }
     body { margin: 0; font-family: system-ui, sans-serif; background: #0a0a0f; color: #fff; min-height: 100vh; }
     .header { border-bottom: 1px solid rgba(255,255,255,0.1); background: rgba(10,10,15,0.9); position: sticky; top: 0; z-index: 20; backdrop-filter: blur(8px); }
-    .header-inner { max-width: 72rem; margin: 0 auto; padding: 1rem; display: flex; align-items: center; justify-content: space-between; }
-    .hero { max-width: 72rem; margin: 0 auto; padding: 2.5rem 1rem; text-align: center; }
+    .header-inner { max-width: 90rem; margin: 0 auto; padding: 1rem; display: flex; align-items: center; justify-content: space-between; }
+    .hero { max-width: 90rem; margin: 0 auto; padding: 2.5rem 1rem; text-align: center; }
     .hero-badge { display: inline-block; font-size: 0.75rem; padding: 0.25rem 0.75rem; border-radius: 9999px; background: rgba(99,102,241,0.2); color: #a5b4fc; margin-bottom: 1rem; font-weight: 500; }
     .hero h1 { font-size: 2.25rem; font-weight: 900; letter-spacing: -0.025em; margin-bottom: 0.75rem; background: linear-gradient(to right,#fff,rgba(255,255,255,0.5)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     .hero p { color: rgba(255,255,255,0.5); font-size: 0.875rem; max-width: 32rem; margin: 0 auto; line-height: 1.6; }
-    .filters { max-width: 72rem; margin: 0 auto; padding: 0 1rem 2rem; display: flex; flex-direction: column; gap: 1rem; }
+    .filters { max-width: 90rem; margin: 0 auto; padding: 0 1rem 2rem; display: flex; flex-direction: column; gap: 1rem; }
     .search-wrap { position: relative; }
     .search-wrap input { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 0.75rem; padding: 0.75rem 1rem 0.75rem 2.5rem; font-size: 0.875rem; color: #fff; outline: none; }
     .search-wrap input::placeholder { color: rgba(255,255,255,0.3); }
@@ -24,9 +24,7 @@
     .cat-btn { font-size: 0.75rem; padding: 0.375rem 1rem; border-radius: 9999px; font-weight: 500; cursor: pointer; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.5); transition: all 0.2s; }
     .cat-btn:hover { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.8); }
     .cat-btn.active { background: #4f46e5; color: #fff; border-color: #4f46e5; }
-    .grid { max-width: 72rem; margin: 0 auto; padding: 0 1rem 2rem; display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
-    @media (min-width: 640px) { .grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (min-width: 1024px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+    .grid { max-width: 90rem; margin: 0 auto; padding: 0 1rem 2rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.25rem; }
     .card { border-radius: 1rem; border: 1px solid rgba(255,255,255,0.1); overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); transition: transform 0.2s; }
     .card:hover { transform: scale(1.015); }
     .card-video-wrap { position: relative; width: 100%; aspect-ratio: 16/9; background: #111; cursor: pointer; }
@@ -41,7 +39,8 @@
     .card-content { padding: 1rem; display: flex; flex-direction: column; gap: 0.625rem; flex: 1; }
     .card-title-row { display: flex; align-items: center; gap: 0.5rem; }
     .card-title { font-weight: 600; color: #fff; font-size: 0.875rem; }
-    .card-prompt { color: rgba(255,255,255,0.6); font-size: 0.75rem; line-height: 1.6; }
+    .card-prompt { color: rgba(255,255,255,0.6); font-size: 0.75rem; line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .card-prompt.expanded { display: block; overflow: visible; }
     .card-tags { display: flex; flex-wrap: wrap; gap: 0.25rem; }
     .card-tag { font-size: 10px; padding: 0.125rem 0.5rem; border-radius: 9999px; background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.4); }
     .card-actions { display: flex; gap: 0.5rem; margin-top: auto; padding-top: 0.25rem; }
@@ -146,8 +145,7 @@
       }
 
       grid.innerHTML = filtered.map(p => {
-        const truncated = p.prompt.length > 110;
-        const shortPrompt = truncated ? p.prompt.slice(0, 110) + "…" : p.prompt;
+        const truncated = p.prompt.length > 60;
         const ytId = getYoutubeId(p.videoUrl);
         const mediaSrc = ytId
           ? '<img src="https://img.youtube.com/vi/' + ytId + '/maxresdefault.jpg" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy">'
@@ -161,9 +159,8 @@
           '</div>' +
           '<div class="card-content">' +
             '<div class="card-title-row"><span style="font-size:1.125rem">' + p.icon + '</span><span class="card-title">' + p.title + '</span></div>' +
-            '<p class="card-prompt">' + shortPrompt +
-              (truncated ? ' <button class="more-btn" data-id="' + p.id + '" data-expanded="0">more</button>' : '') +
-            '</p>' +
+            '<p class="card-prompt" data-id="' + p.id + '">' + escapeHtml(p.prompt) + '</p>' +
+            (truncated ? '<button class="more-btn" data-id="' + p.id + '" data-expanded="0">more</button>' : '') +
             '<div class="card-tags">' + p.tags.map(t => '<span class="card-tag">#' + t + '</span>').join('') + '</div>' +
             '<div class="card-actions">' +
               '<button class="card-btn-copy" data-prompt="' + escapeHtml(p.prompt) + '" data-id="' + p.id + '">' + (copiedId === p.id ? '✓ Copied!' : 'Copy Prompt') + '</button>' +
@@ -219,10 +216,10 @@
       grid.querySelectorAll('.more-btn').forEach(btn => {
         btn.onclick = () => {
           const id = parseInt(btn.dataset.id);
-          const p = PROMPTS.find(x => x.id === id);
           const expanded = btn.dataset.expanded === '1';
           btn.dataset.expanded = expanded ? '0' : '1';
-          btn.previousSibling.textContent = expanded ? p.prompt.slice(0, 110) + "…" : p.prompt;
+          const para = btn.closest('.card-content').querySelector('.card-prompt');
+          para.classList.toggle('expanded', !expanded);
           btn.textContent = expanded ? 'more' : 'less';
         };
       });
