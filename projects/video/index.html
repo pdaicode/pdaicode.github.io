@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Seedance 2.0 Prompts - PromptLib</title>
+  <title>Video Generation Prompts - PromptLib</title>
   <link rel="shortcut icon" href="../support/hw-icon.jpg"/>
   <style>
     * { box-sizing: border-box; }
@@ -65,16 +65,16 @@
       <div style="display:flex;align-items:center;gap:0.5rem;">
         <span style="font-size:1.25rem;">🎬</span>
         <span style="font-weight:700;font-size:1.125rem;">PromptLib</span>
-        <span style="font-size:0.75rem;padding:0.125rem 0.5rem;border-radius:9999px;background:rgba(139,92,246,0.2);color:#c4b5fd;font-weight:500;margin-left:0.25rem;">Seedance 2.0</span>
+        <span style="font-size:0.75rem;padding:0.125rem 0.5rem;border-radius:9999px;background:rgba(139,92,246,0.2);color:#c4b5fd;font-weight:500;margin-left:0.25rem;">Video Generation</span>
       </div>
-      <div id="count" class="text-xs" style="font-size:0.75rem;color:rgba(255,255,255,0.4);">15 prompts · Video previews · Free</div>
+      <div id="count" class="text-xs" style="font-size:0.75rem;color:rgba(255,255,255,0.4);">16 prompts · Video previews · Free</div>
     </div>
   </div>
 
   <div class="hero">
-    <div class="hero-badge">✦ High-Signal AI Video Prompt Library</div>
-    <h1>Seedance 2.0 Prompts</h1>
-    <p>Curated prompts with live video previews — hover to play, click to fullscreen. Copy and use instantly.</p>
+    <div class="hero-badge">✦ AI Video Prompt Library</div>
+    <h1>Video Generation Prompts</h1>
+    <p>Curated prompts across AI video models — hover to play, click to fullscreen. Copy and use instantly.</p>
   </div>
 
   <div class="filters">
@@ -91,7 +91,7 @@
       <button class="cat-btn" data-cat="UGC">UGC</button>
       <button class="cat-btn" data-cat="Social">Social</button>
       <button class="cat-btn" data-cat="Animation">Animation</button>
-      <div id="results" style="margin-left:auto;font-size:0.75rem;color:rgba(255,255,255,0.3);">15 results</div>
+      <div id="results" style="margin-left:auto;font-size:0.75rem;color:rgba(255,255,255,0.3);">16 results</div>
     </div>
   </div>
 
@@ -101,19 +101,31 @@
 
   <script>
     const PROMPTS = [
-      { id: 13, category: "Cinematic", title: "Earth Goddess Reshapes the World", tags: ["chinese mythology","fantasy","epic"], prompt: "【核心概念】东方玄幻史诗•法相天地，以电影级视听语言，融合新中式上古神话神韵与高概念奇幻美术，打造兼具厚重神性与悲悯温度的东方玄幻奇观， 以「地裂天崩后的山河重塑」为核心，漢绎后去法天象地的地母神威。 \n【运镜与构图】1-25微距镜头定格損尖，金色地脉滲人焦去，裂隙绽出金晶； -4s 镜头丝滑上移，掠过配饰定格悲悯面容：4-6s慢拉镜头，女子结印浮现山 河虚影；6-10s极速拉至天地全景，法相显化完成，本尊与法相回屏史诗收尾。 \n【主体细节】上古后去鼻地祇，看素只奢金神袍，衣摆绣山河舆图，赤足踏系 脚踝缠金纹。双手结地母印，指尖凝山川虚影，声如大地脉动，庄严温润 \n【环境与氛围】背景为崩碎大地，山峦断裂、河床干涸、大地魚裂，案中飘碎 石与金烬；九道金光柱对应九鼎，地脉光带交织，氛围肃穆又饱含希望。 \n【光影与色调】主调深灰、焦褐、墨黑，暗调凸显破碎感：女子与法相为鎏金 尊手印重合，共赐大地重生之力。", videoUrl: "https://www.youtube.com/shorts/jIsLJpBiucM", gradient: "linear-gradient(to bottom right,#1c1917,#3b2000)", accent: "#d97706", icon: "🏔️" },
-      { id: 14, category: "Action", title: "Black Mist Warrior Reforging", tags: ["chinese fantasy","action","combat"], prompt: "0-3秒|FPV高速俯冲+环绕运镜，黑雾战场骨刺突袭，墨龙甩尾破敌，持断剑御敌，黑雾缠臂护体。细节：黑雾挡刺、剑劈骨刺、墨龙吐黑雾。 4-7秒|特写+360°环绕运镜，念台词，狂暴黑雾裹身塑形，鎏金符文炸裂，断剑重铸黑金长剑，战甲实体化。细节：黑雾塑甲、朱砂引黑雾、长剑鎏金点亮。 8-12秒|高速跟拍运镜，控黑雾化龙爪清敌，墨龙金纹与黑雾共鸣。细节：龙爪碎敌、战甲黑雾吞吐、龙鳞黑雾交织。 13-15秒|高空俯拍迫踪坠落，落地单膝跪地，石板崩裂，黑金气浪席卷，抬眼直视镜头。细节：护膝砸石、气浪卷黑雾、冷冽眼神映金光。", videoUrl: "https://www.youtube.com/shorts/NLxauKJw6-8", gradient: "linear-gradient(to bottom right,#0a0a0a,#1a1200)", accent: "#ca8a04", icon: "🐉" },
-      { id: 15, category: "Action", title: "Xianxia Spell Duel in Ancient Ruins", tags: ["xianxia","CG animation","combat"], prompt: "中国风修仙主题，CG动画风格，3D渲染，极度夸张的大透视构图视角，展现一场发生在古遗迹中的炫酷炸裂的修仙法术对决。采用专业影视制作级动作场面，景别切换流畅，符合CG动画分镜叙事逻辑，两人战斗全程攻防交错，招式衔接流畅，融入多维度修仙术法对决。超高速激烈战斗，镜头震动加强打击感，强烈气流冲击波，高速动作产生的超高速动态模糊，两人的每一次碰撞都伴随着镜头的震动，超高速的电影镜头摇摄和移动。", videoUrl: "https://www.youtube.com/shorts/LPo47FhePNg", gradient: "linear-gradient(to bottom right,#1e1b4b,#2e1065)", accent: "#7c3aed", icon: "✨" },
-      { id: 1, category: "Product", title: "Headphone Campaign", tags: ["product","commercial","luxury"], prompt: "Premium headphone campaign video, 15 seconds, shot on digital, ultra clean sharp image, minimal modern aesthetic. Glossy black over-ear headphones floating center frame, slowly rotating, every surface catching light. Calm confident voiceover: 'we didn't design headphones.' Smooth slow-motion orbital shot. Brand: AURA. 4K, cinematic.", videoUrl: "https://storage.googleapis.com/fc-mkt-common-pro-rev1-eu-wp-media-bucket/sites/1/2026/02/product-seedance-2-0.mp4", gradient: "linear-gradient(to bottom right,#171717,#262626)", accent: "#6366f1", icon: "🎧" },
-      { id: 2, category: "Anime", title: "Anime Comedy Opening", tags: ["anime","2D","comedy"], prompt: "15-second hand-drawn 2D cel animation opening. Protagonist: young man with spiky black hair, dark face paint, all-black coat — cool look but constantly in silly situations. Sequence: dramatic close-up in moody green/purple lighting, bird lands on his head. Cut to title 'KOROKORO'. Comedy montage: stepping on banana peel, stray cats piling on lap, getting ramen broth splashed on coat.", videoUrl: "https://storage.googleapis.com/fc-mkt-common-pro-rev1-eu-wp-media-bucket/sites/1/2026/02/anime-prompt-seedance-2-0.mp4", gradient: "linear-gradient(to bottom right,#1e1b4b,#083344)", accent: "#06b6d4", icon: "🎌" },
-      { id: 3, category: "Cinematic", title: "Mixed Media Fashion Film", tags: ["fashion","editorial","mixed media"], prompt: "15-second mixed media fashion film combining real footage with animated graphic elements. Models in eclectic vintage fashion filmed at laundromat (lavender grade), parking lot (orange), diner (mint green). Animated overlays react to models: bold geometric shapes in coral, violet, lemon yellow. Hand-drawn illustrations animate in real time. Fast-paced rhythmic editing.", videoUrl: "https://storage.googleapis.com/fc-mkt-common-pro-rev1-eu-wp-media-bucket/sites/1/2026/02/fashion-video-seedance-2-0.mp4", gradient: "linear-gradient(to bottom right,#4c0519,#881337)", accent: "#f43f5e", icon: "👗" },
-      { id: 4, category: "Product", title: "Tennis Product Ad", tags: ["sport","product","dynamic"], prompt: "Dynamic tennis product advertisement, 15 seconds. Slow-motion tennis ball impact, racket strings distorting on contact. Player serving against a golden hour backdrop. Product close-ups: shoe grip on clay, racket frame catching light. Fast editorial cuts synchronized to a pulse-beat soundtrack. 4K, commercial grade, vibrant color grading.", videoUrl: "https://storage.googleapis.com/fc-mkt-common-pro-rev1-eu-wp-media-bucket/sites/1/2026/02/sport-tenis-seedance-2-0.mp4", gradient: "linear-gradient(to bottom right,#422006,#78350f)", accent: "#f59e0b", icon: "🎾" },
-      { id: 5, category: "Action", title: "Ronin vs Winged Beast", tags: ["epic","fantasy","action"], prompt: "A masked ronin on floating rock islands during a thunderstorm battles a colossal winged beast. Camera starts wide, slow dolly in as lightning strikes. The ronin leaps, sword trailing azure energy, and slashes through the creature's wing. Final frame: creature falls into storm clouds below. 4K, cinematic, 16:9, 15s.", videoUrl: "https://videos.pexels.com/video-files/2491284/2491284-uhd_2560_1440_24fps.mp4", gradient: "linear-gradient(to bottom right,#0f172a,#172554)", accent: "#3b82f6", icon: "⚔️" },
-      { id: 6, category: "Action", title: "Car Transforms into Optimus Prime", tags: ["CGI","action","sci-fi"], prompt: "A luxury car speeds down a rain-soaked Tokyo street at night. Mid-drive, it begins to transform into Optimus Prime. Godzilla appears from behind skyscrapers. Epic battle ensues with energy blasts and explosions. Cinematic, neon-lit, 4K, 15s.", videoUrl: "https://videos.pexels.com/video-files/3015488/3015488-uhd_2560_1440_25fps.mp4", gradient: "linear-gradient(to bottom right,#18181b,#450a0a)", accent: "#ef4444", icon: "🤖" },
-      { id: 7, category: "Anime", title: "Water vs Thunder Breathing Duel", tags: ["anime","wuxia","FX"], prompt: "Live-action Hollywood adaptation: 'Water Breathing' (blue water dragon aura) vs 'Thunder Breathing' (golden lightning). Misty forest, moonlight. Shot 1: hands glowing blue. Shot 2: lightning strike from above. Shot 3: both clash mid-air in a shockwave. Dark samurai aesthetic, 4K, fast cuts, 15s.", videoUrl: "https://videos.pexels.com/video-files/4911704/4911704-uhd_2560_1440_25fps.mp4", gradient: "linear-gradient(to bottom right,#2e1065,#172554)", accent: "#8b5cf6", icon: "🌊" },
-      { id: 8, category: "Animation", title: "Van Gogh Living World", tags: ["animation","art","Van Gogh"], prompt: "A completely dynamic world made of thick Van Gogh oil paint. Sky: deep blue night with huge yellow celestial bodies, crescent moon with radiating brushstrokes, nebulae swirling like rivers. Ground: wheatfields rippling in painted wind. Heavy impasto texture, high saturation blue-yellow contrast. 15s animation.", videoUrl: "https://videos.pexels.com/video-files/3214294/3214294-uhd_2560_1440_25fps.mp4", gradient: "linear-gradient(to bottom right,#422006,#172554)", accent: "#eab308", icon: "🎨" },
-      { id: 9, category: "Cinematic", title: "Cyberpunk Hacker Night Market", tags: ["cyberpunk","noir","cinematic"], prompt: "0–4s: Hacker in damaged trench coat walks down rainy neon night street. Pink/blue neon reflections on wet pavement. 4–10s: Close on face, drone hum grows louder. 10–15s: Hacker ducks into alley, drone light sweeps past. Anamorphic lens flare, film grain, stable exposure. Cinematic, 4K.", videoUrl: "https://videos.pexels.com/video-files/3129671/3129671-uhd_2560_1440_30fps.mp4", gradient: "linear-gradient(to bottom right,#2e1065,#4a044e)", accent: "#a855f7", icon: "🌆" }
+      { id: 13, category: "Cinematic", model: "Seedance 2.0", title: "Earth Goddess Reshapes the World", tags: ["chinese mythology","fantasy","epic"], prompt: "【核心概念】东方玄幻史诗•法相天地，以电影级视听语言，融合新中式上古神话神韵与高概念奇幻美术，打造兼具厚重神性与悲悯温度的东方玄幻奇观， 以「地裂天崩后的山河重塑」为核心，漢绎后去法天象地的地母神威。 \n【运镜与构图】1-25微距镜头定格損尖，金色地脉滲人焦去，裂隙绽出金晶； -4s 镜头丝滑上移，掠过配饰定格悲悯面容：4-6s慢拉镜头，女子结印浮现山 河虚影；6-10s极速拉至天地全景，法相显化完成，本尊与法相回屏史诗收尾。 \n【主体细节】上古后去鼻地祇，看素只奢金神袍，衣摆绣山河舆图，赤足踏系 脚踝缠金纹。双手结地母印，指尖凝山川虚影，声如大地脉动，庄严温润 \n【环境与氛围】背景为崩碎大地，山峦断裂、河床干涸、大地魚裂，案中飘碎 石与金烬；九道金光柱对应九鼎，地脉光带交织，氛围肃穆又饱含希望。 \n【光影与色调】主调深灰、焦褐、墨黑，暗调凸显破碎感：女子与法相为鎏金 尊手印重合，共赐大地重生之力。", videoUrl: "https://www.youtube.com/shorts/jIsLJpBiucM", gradient: "linear-gradient(to bottom right,#1c1917,#3b2000)", accent: "#d97706", icon: "🏔️" },
+      { id: 14, category: "Action", model: "Seedance 2.0", title: "Black Mist Warrior Reforging", tags: ["chinese fantasy","action","combat"], prompt: "0-3秒|FPV高速俯冲+环绕运镜，黑雾战场骨刺突袭，墨龙甩尾破敌，持断剑御敌，黑雾缠臂护体。细节：黑雾挡刺、剑劈骨刺、墨龙吐黑雾。 4-7秒|特写+360°环绕运镜，念台词，狂暴黑雾裹身塑形，鎏金符文炸裂，断剑重铸黑金长剑，战甲实体化。细节：黑雾塑甲、朱砂引黑雾、长剑鎏金点亮。 8-12秒|高速跟拍运镜，控黑雾化龙爪清敌，墨龙金纹与黑雾共鸣。细节：龙爪碎敌、战甲黑雾吞吐、龙鳞黑雾交织。 13-15秒|高空俯拍迫踪坠落，落地单膝跪地，石板崩裂，黑金气浪席卷，抬眼直视镜头。细节：护膝砸石、气浪卷黑雾、冷冽眼神映金光。", videoUrl: "https://www.youtube.com/shorts/NLxauKJw6-8", gradient: "linear-gradient(to bottom right,#0a0a0a,#1a1200)", accent: "#ca8a04", icon: "🐉" },
+      { id: 15, category: "Action", model: "Seedance 2.0", title: "Xianxia Spell Duel in Ancient Ruins", tags: ["xianxia","CG animation","combat"], prompt: "中国风修仙主题，CG动画风格，3D渲染，极度夸张的大透视构图视角，展现一场发生在古遗迹中的炫酷炸裂的修仙法术对决。采用专业影视制作级动作场面，景别切换流畅，符合CG动画分镜叙事逻辑，两人战斗全程攻防交错，招式衔接流畅，融入多维度修仙术法对决。超高速激烈战斗，镜头震动加强打击感，强烈气流冲击波，高速动作产生的超高速动态模糊，两人的每一次碰撞都伴随着镜头的震动，超高速的电影镜头摇摄和移动。", videoUrl: "https://www.youtube.com/shorts/LPo47FhePNg", gradient: "linear-gradient(to bottom right,#1e1b4b,#2e1065)", accent: "#7c3aed", icon: "✨" },
+      { id: 16, category: "Cinematic", model: "Seedance 2.0", title: "Water Goddess Restores the Rivers", tags: ["chinese mythology","water deity","epic"], prompt: "【核心概念】东万至幻史诗•法相天地电影级视听语言，融合新中式上古神话神韵与高概念奇幻美木风格，构建兼具清冷神性与治煎力童的东万至幻视觉奇观，以「洪水滔天过后的頁川归序」为核心叙事，演绎法天象地水神神威。\n【运镜与构图】1-2s微距镜头定格女子掌心水珠，水珠映江河湖海，滴落涤清洪水；2-4s镜头丝滑上移，掠过水袖与玄水玉佩，定格其清冷垂眸的面容；4-6s镜头慢拉至天地全景，法相显化，本尊与法相、万川归海同屏留帧0.5s\n【主体细节】女子为上古玄冥水神，着水蓝月白神袍，衣摆绣江河舆图，赤足踏水，脚踝缠玄水神文，周身绕水雾水珠。结玄水手印涤浊为清，声如流水清冽：\"法天象地，万川归海。\"\n【环境与氛围】背景为洪水灾后大地，村落农田被淹，河道错乱；远处蓝色水脉归海，氛围平静治愈、万物归序。\n【光影与色调】主调为士黄、灰绿、深灰，低饱和显荒芜；水神与法相为冰蓝、月白，顺逆光勾勒轮廓，水雾现丁达尔光效。\n【法相显化与高潮收尾】玄水龙气喷涌，凝聚出横跨天地的万川法相，躯内江河腾，定海神针与四海印环绕。身后玄水法阵旋转，梳理河道、澄净洪水，法相与本尊手印重合，共定水之秩序。", videoUrl: "https://www.instagram.com/reel/DVeei4mCS8K/?igsh=MWkzdml2aW5sOHA0cw==", gradient: "linear-gradient(to bottom right,#0c1a2e,#0e3a4a)", accent: "#06b6d4", icon: "💧" },
+      { id: 1, category: "Product", model: "Seedance 2.0", title: "Headphone Campaign", tags: ["product","commercial","luxury"], prompt: "Premium headphone campaign video, 15 seconds, shot on digital, ultra clean sharp image, minimal modern aesthetic. Glossy black over-ear headphones floating center frame, slowly rotating, every surface catching light. Calm confident voiceover: 'we didn't design headphones.' Smooth slow-motion orbital shot. Brand: AURA. 4K, cinematic.", videoUrl: "https://storage.googleapis.com/fc-mkt-common-pro-rev1-eu-wp-media-bucket/sites/1/2026/02/product-seedance-2-0.mp4", gradient: "linear-gradient(to bottom right,#171717,#262626)", accent: "#6366f1", icon: "🎧" },
+      { id: 2, category: "Anime", model: "Seedance 2.0", title: "Anime Comedy Opening", tags: ["anime","2D","comedy"], prompt: "15-second hand-drawn 2D cel animation opening. Protagonist: young man with spiky black hair, dark face paint, all-black coat — cool look but constantly in silly situations. Sequence: dramatic close-up in moody green/purple lighting, bird lands on his head. Cut to title 'KOROKORO'. Comedy montage: stepping on banana peel, stray cats piling on lap, getting ramen broth splashed on coat.", videoUrl: "https://storage.googleapis.com/fc-mkt-common-pro-rev1-eu-wp-media-bucket/sites/1/2026/02/anime-prompt-seedance-2-0.mp4", gradient: "linear-gradient(to bottom right,#1e1b4b,#083344)", accent: "#06b6d4", icon: "🎌" },
+      { id: 3, category: "Cinematic", model: "Seedance 2.0", title: "Mixed Media Fashion Film", tags: ["fashion","editorial","mixed media"], prompt: "15-second mixed media fashion film combining real footage with animated graphic elements. Models in eclectic vintage fashion filmed at laundromat (lavender grade), parking lot (orange), diner (mint green). Animated overlays react to models: bold geometric shapes in coral, violet, lemon yellow. Hand-drawn illustrations animate in real time. Fast-paced rhythmic editing.", videoUrl: "https://storage.googleapis.com/fc-mkt-common-pro-rev1-eu-wp-media-bucket/sites/1/2026/02/fashion-video-seedance-2-0.mp4", gradient: "linear-gradient(to bottom right,#4c0519,#881337)", accent: "#f43f5e", icon: "👗" },
+      { id: 4, category: "Product", model: "Seedance 2.0", title: "Tennis Product Ad", tags: ["sport","product","dynamic"], prompt: "Dynamic tennis product advertisement, 15 seconds. Slow-motion tennis ball impact, racket strings distorting on contact. Player serving against a golden hour backdrop. Product close-ups: shoe grip on clay, racket frame catching light. Fast editorial cuts synchronized to a pulse-beat soundtrack. 4K, commercial grade, vibrant color grading.", videoUrl: "https://storage.googleapis.com/fc-mkt-common-pro-rev1-eu-wp-media-bucket/sites/1/2026/02/sport-tenis-seedance-2-0.mp4", gradient: "linear-gradient(to bottom right,#422006,#78350f)", accent: "#f59e0b", icon: "🎾" },
+      { id: 5, category: "Action", model: "Seedance 2.0", title: "Ronin vs Winged Beast", tags: ["epic","fantasy","action"], prompt: "A masked ronin on floating rock islands during a thunderstorm battles a colossal winged beast. Camera starts wide, slow dolly in as lightning strikes. The ronin leaps, sword trailing azure energy, and slashes through the creature's wing. Final frame: creature falls into storm clouds below. 4K, cinematic, 16:9, 15s.", videoUrl: "https://videos.pexels.com/video-files/2491284/2491284-uhd_2560_1440_24fps.mp4", gradient: "linear-gradient(to bottom right,#0f172a,#172554)", accent: "#3b82f6", icon: "⚔️" },
+      { id: 6, category: "Action", model: "Seedance 2.0", title: "Car Transforms into Optimus Prime", tags: ["CGI","action","sci-fi"], prompt: "A luxury car speeds down a rain-soaked Tokyo street at night. Mid-drive, it begins to transform into Optimus Prime. Godzilla appears from behind skyscrapers. Epic battle ensues with energy blasts and explosions. Cinematic, neon-lit, 4K, 15s.", videoUrl: "https://videos.pexels.com/video-files/3015488/3015488-uhd_2560_1440_25fps.mp4", gradient: "linear-gradient(to bottom right,#18181b,#450a0a)", accent: "#ef4444", icon: "🤖" },
+      { id: 7, category: "Anime", model: "Seedance 2.0", title: "Water vs Thunder Breathing Duel", tags: ["anime","wuxia","FX"], prompt: "Live-action Hollywood adaptation: 'Water Breathing' (blue water dragon aura) vs 'Thunder Breathing' (golden lightning). Misty forest, moonlight. Shot 1: hands glowing blue. Shot 2: lightning strike from above. Shot 3: both clash mid-air in a shockwave. Dark samurai aesthetic, 4K, fast cuts, 15s.", videoUrl: "https://videos.pexels.com/video-files/4911704/4911704-uhd_2560_1440_25fps.mp4", gradient: "linear-gradient(to bottom right,#2e1065,#172554)", accent: "#8b5cf6", icon: "🌊" },
+      { id: 8, category: "Animation", model: "Seedance 2.0", title: "Van Gogh Living World", tags: ["animation","art","Van Gogh"], prompt: "A completely dynamic world made of thick Van Gogh oil paint. Sky: deep blue night with huge yellow celestial bodies, crescent moon with radiating brushstrokes, nebulae swirling like rivers. Ground: wheatfields rippling in painted wind. Heavy impasto texture, high saturation blue-yellow contrast. 15s animation.", videoUrl: "https://videos.pexels.com/video-files/3214294/3214294-uhd_2560_1440_25fps.mp4", gradient: "linear-gradient(to bottom right,#422006,#172554)", accent: "#eab308", icon: "🎨" },
+      { id: 9, category: "Cinematic", model: "Seedance 2.0", title: "Cyberpunk Hacker Night Market", tags: ["cyberpunk","noir","cinematic"], prompt: "0–4s: Hacker in damaged trench coat walks down rainy neon night street. Pink/blue neon reflections on wet pavement. 4–10s: Close on face, drone hum grows louder. 10–15s: Hacker ducks into alley, drone light sweeps past. Anamorphic lens flare, film grain, stable exposure. Cinematic, 4K.", videoUrl: "https://videos.pexels.com/video-files/3129671/3129671-uhd_2560_1440_30fps.mp4", gradient: "linear-gradient(to bottom right,#2e1065,#4a044e)", accent: "#a855f7", icon: "🌆" }
     ];
+
+    const MODEL_COLORS = {
+      "Seedance 2.0": { bg: "rgba(6,182,212,0.15)", color: "#67e8f9", border: "rgba(6,182,212,0.3)" }
+    };
+    const MODEL_URLS = {
+      "Seedance 2.0": "https://jimeng.jianying.com"
+    };
+    function modelStyle(model) {
+      const c = MODEL_COLORS[model] || { bg: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.5)", border: "rgba(255,255,255,0.2)" };
+      return 'background:' + c.bg + ';color:' + c.color + ';border:1px solid ' + c.border;
+    }
 
     let activeCategory = "All";
     let search = "";
@@ -128,7 +140,8 @@
           p.title.toLowerCase().includes(q) ||
           p.prompt.toLowerCase().includes(q) ||
           p.tags.some(t => t.includes(q)) ||
-          p.category.toLowerCase().includes(q)
+          p.category.toLowerCase().includes(q) ||
+          (p.model && p.model.toLowerCase().includes(q))
         );
       }
       return res;
@@ -147,11 +160,21 @@
       grid.innerHTML = filtered.map(p => {
         const truncated = p.prompt.length > 60;
         const ytId = getYoutubeId(p.videoUrl);
-        const mediaSrc = ytId
-          ? '<img src="https://img.youtube.com/vi/' + ytId + '/maxresdefault.jpg" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy">'
-          : '<video src="' + p.videoUrl + '" muted loop playsinline preload="metadata"></video>';
+        const isIg = isInstagramUrl(p.videoUrl);
+        let mediaSrc, dataAttrs = '';
+        if (ytId) {
+          mediaSrc = '<img src="https://img.youtube.com/vi/' + ytId + '/maxresdefault.jpg" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy">';
+          dataAttrs = ' data-ytid="' + ytId + '"';
+        } else if (isIg) {
+          mediaSrc = '<div style="width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045)">' +
+            '<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg>' +
+            '<span style="color:rgba(255,255,255,0.8);font-size:0.7rem;font-weight:500;">View on Instagram</span></div>';
+          dataAttrs = ' data-igurl="' + p.videoUrl + '"';
+        } else {
+          mediaSrc = '<video src="' + p.videoUrl + '" muted loop playsinline preload="metadata"></video>';
+        }
         return '<div class="card" style="background:' + p.gradient + '">' +
-          '<div class="card-video-wrap" data-id="' + p.id + '"' + (ytId ? ' data-ytid="' + ytId + '"' : '') + '>' +
+          '<div class="card-video-wrap" data-id="' + p.id + '"' + dataAttrs + '>' +
             mediaSrc +
             '<div class="card-play-overlay"><div class="card-play-btn"><span style="font-size:20px;padding-left:3px">▶</span></div></div>' +
             '<span class="card-badge" style="background:' + p.accent + '44;color:' + p.accent + ';border:1px solid ' + p.accent + '44">' + p.category + '</span>' +
@@ -159,12 +182,13 @@
           '</div>' +
           '<div class="card-content">' +
             '<div class="card-title-row"><span style="font-size:1.125rem">' + p.icon + '</span><span class="card-title">' + p.title + '</span></div>' +
+            (p.model ? '<div><span style="font-size:10px;padding:0.1rem 0.45rem;border-radius:9999px;font-weight:600;' + modelStyle(p.model) + '">' + escapeHtml(p.model) + '</span></div>' : '') +
             '<p class="card-prompt" data-id="' + p.id + '">' + escapeHtml(p.prompt) + '</p>' +
             (truncated ? '<button class="more-btn" data-id="' + p.id + '" data-expanded="0">more</button>' : '') +
             '<div class="card-tags">' + p.tags.map(t => '<span class="card-tag">#' + t + '</span>').join('') + '</div>' +
             '<div class="card-actions">' +
               '<button class="card-btn-copy" data-prompt="' + escapeHtml(p.prompt) + '" data-id="' + p.id + '">' + (copiedId === p.id ? '✓ Copied!' : 'Copy Prompt') + '</button>' +
-              '<button style="background:' + p.accent + 'cc;color:#fff" onclick="window.open(\'https://jimeng.jianying.com\',\'_blank\')">Try it →</button>' +
+              '<button style="background:' + p.accent + 'cc;color:#fff" onclick="window.open(\'' + (MODEL_URLS[p.model] || 'https://jimeng.jianying.com') + '\',\'_blank\')">Try it →</button>' +
             '</div>' +
           '</div>' +
         '</div>';
@@ -173,8 +197,12 @@
       // Attach event listeners
       grid.querySelectorAll('.card-video-wrap').forEach(wrap => {
         const ytId = wrap.dataset.ytid;
+        const igUrl = wrap.dataset.igurl;
         const overlay = wrap.querySelector('.card-play-overlay');
-        if (ytId) {
+        if (igUrl) {
+          wrap.style.cursor = 'pointer';
+          wrap.addEventListener('click', () => { window.open(igUrl, '_blank'); });
+        } else if (ytId) {
           wrap.style.cursor = 'pointer';
           wrap.addEventListener('click', () => {
             const p = PROMPTS.find(x => x.id === parseInt(wrap.dataset.id));
@@ -238,6 +266,9 @@
     function getYoutubeId(url) {
       const m = url.match(/(?:youtube\.com\/(?:shorts\/|watch\?v=)|youtu\.be\/)([^?&]+)/);
       return m ? m[1] : null;
+    }
+    function isInstagramUrl(url) {
+      return url.includes('instagram.com');
     }
 
     function escapeHtml(s) {
